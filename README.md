@@ -1,1 +1,1 @@
-# crypto-math
+# haskell-crypto-math
