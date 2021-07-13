@@ -1,6 +1,7 @@
 module Lib
     ( pow'
     , sqrt'
+    , gcd'
     ) where
 
 pow' :: Int -> Int -> Int
@@ -29,4 +30,17 @@ sqrt' a b =
         s = (l + p) `div` 2
         (l', p') = if pow' s b <= a then (s, p) else (l, s)
   in sqrt'' a b 1 a
+
+
+
+gcd' :: Int -> Int -> Int
+gcd' a b 
+  | (a /= 0) && (b /= 0) = gcd' a' b'
+  | otherwise = abs $ a + b
+  where
+    c' = b
+    b' = a `mod` b
+    a' = c'
+
+  
 
