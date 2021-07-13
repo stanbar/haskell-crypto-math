@@ -1,8 +1,10 @@
 module Main where
 
-import Lib
+import Lib (pow', sqrt')
 
 main :: IO ()
 main = do 
-  let result = pow' 3 4
-  print result
+  let powered = pow' 3 4
+      sqrd = sqrt' 81 4
+  print powered
+  print sqrd

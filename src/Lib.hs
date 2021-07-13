@@ -1,6 +1,6 @@
 module Lib
     ( pow'
-    , sqrt
+    , sqrt'
     ) where
 
 pow' :: Int -> Int -> Int
@@ -16,11 +16,17 @@ pow' a b =
   in pow a b 1
 
 
-sqrt' :: Int -> Int -> Int -> Int
-sqrt' a b l
-  | l <= a - 2 = sqrt' a b l
-  | otherwise = l
-  where 
-    s = (l + a) `div` 2
-    l = if pow' s b <= a then s else l
+sqrt' :: Int -> Int -> Int
+
+sqrt' 1 _ = 1
+sqrt' _ 1 = 1
+sqrt' a b =
+  let 
+    sqrt'' a b l p
+      | l <= p - 2 = sqrt'' a b l' p'
+      | otherwise = l
+      where 
+        s = (l + p) `div` 2
+        (l', p') = if pow' s b <= a then (s, p) else (l, s)
+  in sqrt'' a b 1 a
 
