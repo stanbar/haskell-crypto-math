@@ -1,10 +1,12 @@
 module Lib
-  ( pow'
-  ,  sqrt'
-  , gcd'
-  , dividors
-  , nthPrime
-  , nPrimes
+  ( pow',
+    sqrt',
+    gcd',
+    dividors,
+    nthPrime,
+    nPrimes,
+    totient,
+    isRelativePrime
   )
 where
 
@@ -19,8 +21,6 @@ pow' a b =
           b' = b `div` 2
    in pow a b 1
 
-
-
 sqrt' :: Int -> Int -> Int
 sqrt' 1 _ = 1
 sqrt' _ 1 = 1
@@ -33,8 +33,6 @@ sqrt' a b =
           (l', p') = if pow' s b <= a then (s, p) else (l, s)
    in sqrt'' a b 1 a
 
-
-
 gcd' :: Int -> Int -> Int
 gcd' a b
   | (a /= 0) && (b /= 0) = gcd' a' b'
@@ -44,8 +42,6 @@ gcd' a b
     b' = a `mod` b
     a' = c'
 
-
-
 dividors :: Int -> [Int]
 dividors a =
   let dividors' a n d
@@ -53,20 +49,21 @@ dividors a =
         | otherwise = a `div` n : n : dividors' a (n -1) d
    in dividors' a (sqrt' a 2) [1, a]
 
-
-
 nthPrime :: Int -> Int
 nthPrime n =
-  let 
-    sn n =
-      let denomSum i = foldl (\accj j -> accj + (i `div` j) - ((i - 1) `div` j)) 0 [2 .. i -1]
-      in foldl (\acci i -> acci + (1 `div` (1 + denomSum i))) 0 [2 .. n]
-  in head [x | x <- [1..], sn x >= n ]
-
-
+  let sn n =
+        let denomSum i = foldl (\accj j -> accj + (i `div` j) - ((i - 1) `div` j)) 0 [2 .. i -1]
+         in foldl (\acci i -> acci + (1 `div` (1 + denomSum i))) 0 [2 .. n]
+   in head [x | x <- [1 ..], sn x >= n]
 
 nPrimes :: Int -> [Int]
-nPrimes n = [nthPrime x | x <- [1..n]]
+nPrimes n = [nthPrime x | x <- [1 .. n]]
 
+isRelativePrime :: Int -> Int -> Bool
+isRelativePrime a b = gcd' a b == 1
 
-
+-- Returns all numbers that are relatively prime to $a$.
+-- A number relatively prime to $a$ is a number which does not have any other dividors than 1. Formally x is relatively prime to a iff gcd(a, x) == 1.
+totient :: Int -> [Int]
+totient a = [x | x <- [1 .. a -1], isRelativePrime' x]
+  where isRelativePrime' x = isRelativePrime a x
