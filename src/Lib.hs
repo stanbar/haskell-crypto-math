@@ -7,7 +7,8 @@ module Lib
     nPrimes,
     relativePrimes,
     totient,
-    isRelativePrime
+    isRelativePrime,
+    isPrime
   )
 where
 
@@ -72,3 +73,6 @@ relativePrimes a = [x | x <- [1 .. a -1], isRelativePrime' x]
 
 totient :: Int -> Int
 totient a = length $ relativePrimes a
+
+isPrime :: Int -> Bool
+isPrime k = if k <= 1 then False else null [ x | x <- [2 ..  sqrt' k 2], k `mod` x == 0]

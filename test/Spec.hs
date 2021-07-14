@@ -1,4 +1,4 @@
-import Lib (divisors, gcd', isRelativePrime, nPrimes, nthPrime, pow', relativePrimes, sqrt', totient)
+import Lib (divisors, gcd', isRelativePrime, nPrimes, nthPrime, pow', relativePrimes, sqrt', totient, isPrime)
 
 main :: IO ()
 main = do
@@ -26,5 +26,10 @@ main = do
 
   putStrLn $ if isRelativePrime 9 7 == (totient (9 * 7) == totient 9 * totient 7) then "Ok" else "False"
   putStrLn $ if isRelativePrime 9 6 == (totient (9 * 6) == totient 9 * totient 6) then "Ok" else "False"
+
+  putStrLn $ if not $ isPrime 9 then "Ok" else "False"
+  putStrLn $ if not $ isPrime 10  then "Ok" else "False"
+  putStrLn $ if isPrime 7 then "Ok" else "False"
+
 
   return ()
