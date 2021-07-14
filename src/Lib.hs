@@ -2,9 +2,10 @@ module Lib
   ( pow',
     sqrt',
     gcd',
-    dividors,
+    divisors,
     nthPrime,
     nPrimes,
+    relativePrimes,
     totient,
     isRelativePrime
   )
@@ -42,8 +43,8 @@ gcd' a b
     b' = a `mod` b
     a' = c'
 
-dividors :: Int -> [Int]
-dividors a =
+divisors :: Int -> [Int]
+divisors a =
   let dividors' a n d
         | n == 1 = d
         | otherwise = a `div` n : n : dividors' a (n -1) d
@@ -64,6 +65,10 @@ isRelativePrime a b = gcd' a b == 1
 
 -- Returns all numbers that are relatively prime to $a$.
 -- A number relatively prime to $a$ is a number which does not have any other dividors than 1. Formally x is relatively prime to a iff gcd(a, x) == 1.
-totient :: Int -> [Int]
-totient a = [x | x <- [1 .. a -1], isRelativePrime' x]
+relativePrimes :: Int -> [Int]
+relativePrimes a = [x | x <- [1 .. a -1], isRelativePrime' x]
   where isRelativePrime' x = isRelativePrime a x
+
+
+totient :: Int -> Int
+totient a = length $ relativePrimes a
