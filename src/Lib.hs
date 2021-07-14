@@ -8,7 +8,8 @@ module Lib
     relativePrimes,
     totient,
     isRelativePrime,
-    isPrime
+    isPrime,
+    isPowerOfSomeNumber
   )
 where
 
@@ -76,3 +77,11 @@ totient a = length $ relativePrimes a
 
 isPrime :: Int -> Bool
 isPrime k = if k <= 1 then False else null [ x | x <- [2 ..  sqrt' k 2], k `mod` x == 0]
+
+
+bits :: Int -> Int
+bits x = ceiling $ logBase 2 $ fromIntegral x
+
+isPowerOfSomeNumber :: Int -> Bool
+isPowerOfSomeNumber a = any (predicate a) [2..bits a]
+  where predicate a c = ((a ==) . (`pow'` c) . (sqrt' a)) c

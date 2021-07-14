@@ -1,4 +1,4 @@
-import Lib (divisors, gcd', isRelativePrime, nPrimes, nthPrime, pow', relativePrimes, sqrt', totient, isPrime)
+import Lib (divisors, gcd', isRelativePrime, nPrimes, nthPrime, pow', relativePrimes, sqrt', totient, isPrime, isPowerOfSomeNumber)
 
 main :: IO ()
 main = do
@@ -32,6 +32,9 @@ main = do
   putStrLn $ if isPrime 7 then "Ok" else "False"
 
   putStrLn $ if isPrime 7 `implies` (totient(7^4) == 7^4 - 7^(4-1))  then "Ok" else "False"
+
+  putStrLn $ if isPowerOfSomeNumber 4 then "Ok" else "False"
+  putStrLn $ if not $ isPowerOfSomeNumber 5 then "Ok" else "False"
 
   return ()
 
