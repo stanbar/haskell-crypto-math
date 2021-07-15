@@ -66,7 +66,7 @@ isRelativePrime :: Int -> Int -> Bool
 isRelativePrime a b = gcd' a b == 1
 
 -- Returns all numbers that are relatively prime to $a$.
--- A number relatively prime to $a$ is a number which does not have any other dividors than 1. Formally x is relatively prime to a iff gcd(a, x) == 1.
+-- A number relatively prime to $a$ is a number which does not have any other divisors than one. Formally $x$ is relatively prime to $a$ iff gcd(a, x) == 1.
 relativePrimes :: Int -> [Int]
 relativePrimes a = [x | x <- [1 .. a -1], isRelativePrime' x]
   where isRelativePrime' x = isRelativePrime a x
