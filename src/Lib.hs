@@ -2,6 +2,7 @@ module Lib
   ( pow',
     sqrt',
     gcd',
+    numberOfDivisors,
     divisors,
     nthPrime,
     nPrimes,
@@ -52,6 +53,9 @@ divisors a =
         | otherwise = a `div` n : n : dividors' a (n -1) d
    in dividors' a (sqrt' a 2) [1, a]
 
+numberOfDivisors :: Int -> Int
+numberOfDivisors a = sum [a `div` b - ((a - 1) `div` b) | b <- [1..a]]
+
 nthPrime :: Int -> Int
 nthPrime n =
   let sn n =
@@ -85,3 +89,4 @@ bits x = ceiling $ logBase 2 $ fromIntegral x
 isPowerOfSomeNumber :: Int -> Bool
 isPowerOfSomeNumber a = any (predicate a) [2..bits a]
   where predicate a c = ((a ==) . (`pow'` c) . (sqrt' a)) c
+
