@@ -50,6 +50,7 @@ test-suite crypto-math-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
+      ModularArithmetic
       Paths_haskell_crypto_math
   hs-source-dirs:
       test

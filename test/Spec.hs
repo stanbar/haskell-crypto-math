@@ -1,4 +1,4 @@
-import Lib (divisors, gcd', isRelativePrime, nPrimes, nthPrime, pow', relativePrimes, sqrt', totient, isPrime, isPowerOfSomeNumber)
+import Lib (divisors, gcd', isRelativePrime, nPrimes, nthPrime, pow', relativePrimes, sqrt', totient, isPrime, isPowerOfSomeNumber, numberOfDivisors)
 
 main :: IO ()
 main = do
@@ -35,6 +35,8 @@ main = do
 
   putStrLn $ if isPowerOfSomeNumber 4 then "Ok" else "False"
   putStrLn $ if not $ isPowerOfSomeNumber 5 then "Ok" else "False"
+
+  putStrLn $ if numberOfDivisors 2 == 2 then "Ok" else "False"
 
   return ()
 
